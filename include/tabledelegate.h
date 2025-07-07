@@ -3,25 +3,15 @@
 
 #include <QStyledItemDelegate>
 
+// Если в будущем понадобится сложная отрисовка
 class TableDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 
 public:
     explicit TableDelegate(QObject *parent = nullptr);
-
-    void paint(QPainter *painter,
-               const QStyleOptionViewItem &option,
+    void paint(QPainter *painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const override;
-
-    QSize sizeHint(const QStyleOptionViewItem &option,
-                   const QModelIndex &index) const override;
-
-    void setHighlightColor(const QColor &color);
-    QColor highlightColor() const;
-
-private:
-    QColor m_customHighlightColor;
-    bool m_useCustomHighlight = false;
 };
+
 #endif // TABLEDELEGATE_H

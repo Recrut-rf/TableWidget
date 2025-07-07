@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "tablemodel.h"
-#include "tabledelegate.h"
 
 namespace Ui {
 class TableWidget;
@@ -17,10 +16,16 @@ public:
     explicit TableWidget(QWidget *parent = nullptr);
     ~TableWidget();
 
+    void setTableDimensions(int rows, int columns);
+    void setHighlightColor(const QColor &color);
+    void setHighlightInterval(int interval);
+    void setDefaultSectionSize(int width, int height = -1);
+
 private:
     Ui::TableWidget *ui;
-    TableModel *model;
-    TableDelegate *tableDelegate;
+    TableModel *m_model;
+
+    void resizeToScreen(double ratio);
 };
 
 #endif // TABLEWIDGET_H
