@@ -1,4 +1,5 @@
 #include "tablemodel.h"
+#include <QDebug>
 
 TableModel::TableModel(QObject *parent)
     : QAbstractTableModel(parent)
@@ -25,14 +26,14 @@ QVariant TableModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     if (role == Qt::DisplayRole) {
-        return QString("I:%1,%2").arg(index.column() + 1).arg(index.row() + 1);
+        return QString("I: %1.%2").arg(index.column() + 1).arg(index.row() + 1);
     }
     else if (role == Qt::BackgroundRole &&
              (index.row() + 1) % m_highlightInterval == 0) {
         return m_highlightColor;
     }
     else if (role == Qt::TextAlignmentRole) {
-        return Qt::AlignCenter;
+        return Qt::AlignLeft;
     }
 
     return QVariant();
@@ -44,9 +45,9 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
         return QVariant();
 
     if (orientation == Qt::Horizontal) {
-        return QString("H:%1").arg(section + 1);
+        return QString("H: %1").arg(section + 1);
     } else {
-        return QString("V:%1").arg(section + 1);
+        return QString("V: %1").arg(section + 1);
     }
 }
 
