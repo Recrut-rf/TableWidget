@@ -24,7 +24,7 @@ QVariant TableModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole) {
         // Формат: "X.Y" (столбец.строка)
-        return QString("l:%1,%2").arg(index.column() + 1).arg(index.row() + 1);
+        return QString("l:%1.%2").arg(index.column() + 1).arg(index.row() + 1);
     }
     else if (role == Qt::BackgroundRole && (index.row() + 1) % 10 == 0) {
         return highlightColor; // Подсветка каждой 10-й строки
